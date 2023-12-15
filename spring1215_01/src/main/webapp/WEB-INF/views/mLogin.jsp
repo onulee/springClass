@@ -42,11 +42,11 @@
 		     </colgroup>
 		     <tr>
 		       <th>아이디</th>
-		       <td>${mdto.id}</td>
+		       <td>${id}</td>
 		     </tr>
 		     <tr>
 		       <th>패스워드</th>
-		       <td>${mdto.pw}</td>
+		       <td>${pw}</td>
 		     </tr>
 		     <tr>
 		       <th>이름</th>
