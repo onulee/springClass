@@ -18,7 +18,8 @@
 <body>
 <section>
     <h1>NOTICE</h1>
-    <form action="bUpdate" name="bFrm" method="post">
+    <form action="" id="bFrm" name="bFrm" method="post">
+    <input type="hidden" name="bno" value="${map.bdto.bno}">
     <table>
       <colgroup>
         <col width="15%">
@@ -76,17 +77,33 @@
     </table>
     <script>
        $(function(){
-    	  $("#bupdateBtn").click(function(){
+    	  //수정페이지 이동 
+    	  $(".updateBtn").click(function(){
     		 alert("수정페이지로 이동합니다."); 
-    		 bFrm.submit();
-    	  }); 
+    		 $("#bFrm").attr("action","bUpdate").submit();
+    	  });
+    	  //삭제페이지 이동
+    	  $(".delBtn").click(function(){
+    		  if(confirm("게시글을 삭제하시겠습니까?")){
+    			 $("#bFrm").attr("action","bDelete").submit();  //bDelete페이지 전송
+    		  }
+    	  });
+    	  //답변달기페이지 이동
+    	  $(".replyBtn").click(function(){
+    		 alert("답변달기 페이지로 이동합니다.");
+   			 $("#bFrm").attr("action","bReply").submit();  //bDelete페이지 전송
+    	  });
        });
     </script>
 
     <a href="bList"><div class="list">목록</div></a>
-    <a href=""><div class="list">삭제</div></a>
-    <div class="list" id="bupdateBtn">수정</div>
-    <a href=""><div class="list">답변달기</div></a>
+    <c:if test="${session_id == map.bdto.id }">
+    </c:if>
+	    <div class="list delBtn" style="cursor: pointer;">삭제</div>
+	    <div class="list updateBtn">수정</div>
+    <c:if test="${session_id !=null }">
+    </c:if>
+        <div class="list replyBtn">답변달기</div>
     </form>
   </section>
 </body>

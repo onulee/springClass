@@ -21,7 +21,10 @@
 	        <li><strong style="font-size:20px;">${session_name} 님 환영합니다.</strong></li>
 	        <a href="member/logout"><li>로그아웃</li></a>
 	    </c:if>
-	    <a href="board/bList"><li>공지사항리스트(list)</li></a>
+	    <a href="list"><li>사원리스트(list)</li></a>
+	    <a href="list2"><li>사원부서리스트(list2)</li></a>
+	    <a href="list3"><li>회원게시글리스트(list3)</li></a>
+	    <br>
 	    <a href="mInsert"><li>회원가입</li></a>
 	    <a href="boardBno"><li>글번호</li></a>
 	    <a href="bInsert"><li>글쓰기(insert)</li></a>
