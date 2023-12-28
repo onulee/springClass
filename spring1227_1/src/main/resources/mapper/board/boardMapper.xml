@@ -19,10 +19,10 @@
    </select>
    
    <insert id="bCommentInsert">
-     <selectKey resultType="int" keyProperty="cno" order="BEFORE">
-        select ecomment_seq.nextval from dual
+     <selectKey resultType="com.java.www.dto.BCommentDto" keyProperty="cno,cdate" order="BEFORE">
+        select ecomment_seq.nextval cno,sysdate cdate from dual
      </selectKey>
-     insert into ecomment values (#{cno},#{bno},#{id},#{cpw},#{ccontent},sysdate )
+     insert into ecomment values (#{cno},#{bno},#{id},#{cpw},#{ccontent},#{cdate} )
    </insert>
    
    <select id="bCommentSelectOne" resultType="com.java.www.dto.BCommentDto">
