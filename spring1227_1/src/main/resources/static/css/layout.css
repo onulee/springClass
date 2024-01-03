@@ -13,6 +13,8 @@ html{overflow-y:scroll; width:100%;}
 #ieUser .iewrap ul{float:left; margin:0 0 0 20px;}
 #ieUser .iewrap ul li{float:left; padding:0 12px 0 0;}
 
+/* 커서 */
+.c_pointer{cursor: pointer;}
 
 /* header */
 #header{max-width:900px; margin:33px auto 0;}

@@ -252,6 +252,7 @@ $(document).ready(function() {
 
                     <script>
                       $(function(){
+                    	  let temp=0;
                     	  $(".nbtnMini2").click(function(){
                     		  alert("이메일을 발송합니다.");
                     		  let email = $("#email").val();
@@ -264,16 +265,55 @@ $(document).ready(function() {
                     			  data:{"email":email},
                     			  dataType:"text",
                     			  success:function(data){
-                    				  alert("성공");
+                    				  alert("이메일이 발송되었습니다.");
                     				  console.log("이메일인증코드 : "+data);
+                    				  temp=1;
                     			  },
                     			  error:function(){
                     				  alert("실패");
                     			  }            			  
                     			  
                     		  });//ajax
+                    	  });//nbtnMini2
+                    	  
+                    	  //비밀번호 인증
+                    	  $(".sbtnMini2").click(()=>{
+                    		  //이메일 인증번호 발송을 했는지 확인
+                    		  if(temp==0){
+                    			  alert("이메일 발송을 하셔야 비밀번호 인증이 가능합니다.");
+                    			  $("#email").focus();
+                    			  return false;
+                    		  }
                     		  
-                    	  });
+                    		  alert("비밀번호 인증을 체크 합니다.");
+                    		  let pwcode = $("#pwcode").val();
+                    		  //ajax호출
+                    		  $.ajax({
+                    			  url:"/member/pwChk",
+                    			  data:{"pwcode":pwcode},
+                    			  type:"post",
+                    			  dataType:"text",
+                    			  success:function(data){
+                    				  alert("인증코드 확인되었습니다.");
+                    				  if(data=="success"){
+                    					  temp=0;
+                    					  location.href="/member/step02";
+                    				  }else{
+                    					  alert("인증코드가 일치하지 않습니다. 다시 입력하세요.");
+                    					  return false;
+                    				  }
+                    			  },
+                    			  error:function(){
+                    				  alert("실패");
+                    			  }
+                    		  });//ajax
+                    		  
+                    		  
+                    		  
+                    		  
+                    		  
+                    	  });//sbtnMini2
+                    	  
                       });//jquery
                     </script>
 
@@ -284,8 +324,8 @@ $(document).ready(function() {
 								<li class="r10"><input type="text" id="email" class="w200" /></li>
 								<li><a class="nbtnMini2" style="cursor: pointer;">이메일발송</a></li>
 								<li class="w201"></li>
-								<li class="r10"><input type="text" class="w200" /></li>
-								<li><a href="#" class="sbtnMini2">비밀번호인증</a></li>
+								<li class="r10"><input type="text" id="pwcode" class="w200" /></li>
+								<li><a class="sbtnMini2 c_pointer">비밀번호인증</a></li>
 							</ul>
 						</div>
 					</div>

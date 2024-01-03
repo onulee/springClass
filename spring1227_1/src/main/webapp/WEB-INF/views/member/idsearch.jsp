@@ -211,6 +211,40 @@ $(document).ready(function() {
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(3,0);</script>
 
+            <script>
+               $(function(){
+            	  $("#idBtn").click(()=>{
+            		 alert("아이디 찾기를 시작합니다."); 
+            		 let name = $("#idName").val();
+            		 let email = $("#idEmail").val();
+            		 //alert(name);
+            		 //alert(email);
+            		 
+            		 //ajax전송
+            		 $.ajax({
+            			 url:"/member/idsearch",
+            			 data:{"name":name,"email":email},
+            			 type:"post",
+            			 dataType:"text",
+            			 success:function(data){
+            				 console.log(data);
+            				 if(data=="fail"){
+            					 alert("아이디가 존재하지 않습니다. 회원가입을 해주세요.");
+            				 }else{
+            				     alert("아이디를 찾았습니다.");
+            					 //아이디 확인페이지 이동
+            					 location.href="/member/id?id="+data;
+            				 }
+            			 },
+            			 error:function(){
+            				 alert("실패");
+            			 }
+            		 });//ajax
+            		 
+            		 
+            	  });//idBtn 
+               });//jquery
+            </script>
 
 			<!-- contents -->
 			<div id="contents">
@@ -220,25 +254,53 @@ $(document).ready(function() {
 					<div class="informbox">
 						<div class="inform">
 							<ul>
-								<li><input type="text" class="nameType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='nameType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" id="idName" class="nameType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='nameType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" id="idEmail" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
-
-							<div class="btn"><a href="/member/id" class="gbtn">아이디 찾기</a></div>
+							<div class="btn"><a id="idBtn" class="gbtn c_pointer">아이디 찾기</a></div>
 						</div>
 					</div>
 
+					<script>
+					   $(function(){
+						  $("#pwBtn").click(()=>{
+							 alert("비밀번호 찾기를 시작합니다."); 
+							 let id = $("#id").val();
+							 let email = $("#email").val();
+							 //alert("id : "+id);
+							 //alert("email : "+email);
+							 
+							 //ajax전송
+							 $.ajax({
+								url:"/member/pwsearch",
+								data:{"id":id,"email":email},
+								type:"post",
+								dataType:"text",
+								success:function(data){
+									if(data=="success") alert("메일이 발송되었습니다.");
+									else alert("아이디 또는 이메일주소가 틀립니다. 다시 입력하세요.");
+									console.log(data);
+								},
+								error:function(){
+									alert("실패");
+								}
+							 });//ajax
+							 
+							 
+						  });//pwBtn
+					   });//jquery
+					</script>
 
 
 					<h3>비밀번호 찾기</h3>
 					<div class="informbox">
 						<div class="inform">
 							<ul>
-								<li><input type="text" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" /></li>
-								<li><input type="text" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" /></li>
+								<li><input type="text" id="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" /></li>
+								<li><input type="text" id="email" class="emailType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='emailType'}else {this.className='mfocusnot'}" /></li>
 							</ul>
 
-							<div class="btn"><a href="#" class="gbtn">비밀번호 찾기</a></div>
+							<div class="btn"><a id="pwBtn" class="gbtn c_pointer" >비밀번호 찾기</a></div>
 						</div>
 					</div>
 

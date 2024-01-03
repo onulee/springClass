@@ -637,14 +637,30 @@ $(document).ready(function() {
 						</div>
 
 					</div>
-
+					<script>
+					  $(function(){
+						  $(".sbtnMini").click(()=>{
+							 alert("체크박스 확인합니다."); 
+							 let chkCount = $("input[type=checkbox]:checked").length;
+							 //alert("체크박스 개수 : "+chkCount)
+							 if(chkCount!=3){
+								 alert("모두 동의를 하셔야 다음으로 진행이 됩니다.");
+								 return false;
+							 }else{
+								 alert("모두 동의를 하셨습니다.");
+								 location.href="/member/step03";
+							 }
+							 
+						  });
+					  });
+					</script>
 
 					<!-- Btn Area -->
 					<div class="btnArea">
 						<div class="bCenter">
 							<ul>
-								<li><a href="#" class="nbtnbig">취소하기</a></li>
-								<li><a href="#" class="sbtnMini">가입하기</a></li>
+								<li><a class="nbtnbig c_pointer">취소하기</a></li>
+								<li><a class="sbtnMini c_pointer">가입하기</a></li>
 							</ul>
 						</div>
 					</div>

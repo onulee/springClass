@@ -33,7 +33,7 @@
 		<tr>
 			<td style="width:618px;height:177px;padding:0;margin:0;vertical-align:top;font-size:0;line-height:0;background:#f9f9f9;">
 				<p style="width:620px;margin:30px 0 0 0;padding:0;text-align:center;"><img src="../images/email/img_txt_id02.jpg" alt="쟈뎅샵에서 ID찾기를 요청하셨습니다." /></p>
-				<p style="width:620px;margin:30px 0 0 0;padding:0;text-align:center;color:#666666;font-size:12px;line-height:1;"><strong>ID : <span style="color:#f7703c;line-height:1;">dasdw2341</span></strong></p>
+				<p style="width:620px;margin:30px 0 0 0;padding:0;text-align:center;color:#666666;font-size:12px;line-height:1;"><strong>ID : <span style="color:#f7703c;line-height:1;">${param.id}</span></strong></p>
 				<p style="width:620px;margin:30px 0 0 0;padding:0;text-align:center;color:#888888;font-size:12px;line-height:1.4;">쟈뎅샵에서는 고객님께 보다 나은 서비스를 제공하기 위해 항상 노력하고 있습니다.<br/>앞으로 많은 관심 부탁드립니다.</p>
 			</td>
 		</tr>
