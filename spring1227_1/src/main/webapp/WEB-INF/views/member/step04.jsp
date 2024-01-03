@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,10 +219,9 @@ $(document).ready(function() {
 					
 					<!-- STEP -->
 					<div class="stepWrap">
-						<div class="step stepon">
+						<div class="step">
 							<p class="web">STEP 01</p>
-							<p class="txt">실명확인</p>
-							<p class="ck"><img src="../images/bg/bg_step.png" alt="현재위치" /></p>
+							<p class="txt">실명확인</p>							
 						</div>
 
 						<div class="step">
@@ -230,25 +234,33 @@ $(document).ready(function() {
 							<p class="txt"><span>회원정보</span> <span>입력</span></p>
 						</div>
 
-						<div class="step">
+						<div class="step stepon">
 							<p class="web">STEP 04</p>
 							<p class="txt"><span>회원가입</span> <span>완료</span></p>
+							<p class="ck"><img src="../images/bg/bg_step.png" alt="현재위치" /></p>
 						</div>
 					</div>
 					<!-- //STEP -->
-						
-
-					<div class="alertBox">
-						<ul>
-							<li>회원님의 실명확인 및 가입 여부를 확인하는 절차입니다.</li>
-							<li>회원님의 개인 정보 보호를 위해 실명확인을 실시하고 있습니다.</li>
-						</ul>
+					
+					<div class="celebrate">	
+						<div class="img"><img src="../images/txt/txt_celebrate01.png" alt="JARDIN THECOFFEE CERATOR, SINCE 1984" /></div>
+						<p class="thx">감사합니다. <span>회원가입이 완료되었습니다.</span></p>
+						<p class="txt">
+							저희 가족이 되어주셔서 감사합니다.<br/>
+							가입 시 입력하신 이메일로 가입 완료 메일이 전송되었습니다.<br/>
+							언제나 고객님께 즐겁고 소중한 시간이 되도록 최선을 다 하겠습니다.<br/><br/>
+							가입 시 입력하신 정보는 마이페이지에서 수정하실 수 있습니다.
+						</p>
 					</div>
 
-
 					<!-- Btn Area -->
-					<div class="btnAreaCenter">
-						<a href="#" class="gbtn">휴대폰인증</a></li>
+					<div class="btnArea">
+						<div class="bCenter">
+							<ul>
+								<li><a href="#" class="nbtnbig">메인으로</a></li>
+								<li><a href="#" class="sbtnMini">로그인</a></li>
+							</ul>
+						</div>
 					</div>
 					<!-- //Btn Area -->
 
