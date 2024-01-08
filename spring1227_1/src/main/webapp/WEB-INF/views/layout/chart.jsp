@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>chart</title>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- header.jsp include -->
+<%@include file="../include/header.jsp" %>   
+
 		<script>
 		   $(function(){
 			  $("#cbtn").click(function(){
@@ -101,22 +97,20 @@
 				 });//ajax
 			  });//click
 		   });//jquery
-		
 		</script>
 		<style>
 		  .area{width:50%; height:400px; margin:20px auto; border:3px solid black;}
 		</style>
-	</head>
-	<body>
-	    <select id="cyear">
+	
+	    <select id="cyear" >
 	      <option value="2022년">2022년</option>
 	      <option value="2023년">2023년</option>
 	    </select>
-	    <button id="cbtn">차트데이터 가져오기</button>
+	    <button id="cbtn" style="margin-top:50px;">차트데이터 가져오기</button>
 	    <br>
 	    <div class="area">
 		  <canvas id="myChart"></canvas>
 		</div>
-	
-	</body>
-</html>
+
+<!-- footer.jsp include -->
+<%@include file="../include/footer.jsp" %>   		

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.java</groupId>
-	<artifactId>spring0105_01</artifactId>
+	<artifactId>spring0108_01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring0105_01</name>
+	<name>spring0108_01</name>
 	<description>실습</description>
 	<properties>
 		<java.version>17</java.version>
@@ -38,6 +38,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- JSP 템플릿 엔진 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -115,9 +116,6 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.6.0</version>
 		</dependency>
-		
-		
-		
 		
 	</dependencies>
 
