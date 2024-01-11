@@ -13,6 +13,9 @@
    <select id="selectOne" resultType="com.java.www.dto.BoardDto">
       select * from board where bno=#{bno}
    </select>
+   <update id="bhit">
+      update board set bhit = bhit+1 where bno=#{bno}
+   </update>
    
    <select id="bCommentSelectAll" resultType="com.java.www.dto.BCommentDto">
       select * from ecomment where bno=#{bno} order by cno desc

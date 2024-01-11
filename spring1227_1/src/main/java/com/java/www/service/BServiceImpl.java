@@ -11,6 +11,9 @@ import com.java.www.dto.BCommentDto;
 import com.java.www.dto.BoardDto;
 import com.java.www.mapper.BoardMapper;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -26,9 +29,46 @@ public class BServiceImpl implements BService {
 	}
 
 	@Override //게시글 1개 가져오기
-	public Map<String, Object> selectOne(int bno) {
+	public Map<String, Object> selectOne(int bno,HttpServletRequest request,
+			HttpServletResponse response) {
 		//게시글 1개 가져오기
 		BoardDto bdto = boardMapper.selectOne(bno);
+		
+		//조회수 중복방지
+	    Cookie oldCookie = null;
+	    //최초 확인 - 쿠키 전체 가져옴.
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	           if (cookie.getName().equals("readView")) {
+	        	    System.out.println("readView가 있음.");
+	                oldCookie = cookie;
+	           }
+	        }
+	    }//
+	    
+	    if (oldCookie != null) {
+	    	//oldCookie 에 해당 bno가 있는지 확인
+	        if (!oldCookie.getValue().contains("["+ bno +"]")) {
+	        	//조회수 증가
+	    		boardMapper.bhit(bno);
+	            oldCookie.setValue(oldCookie.getValue() + "_[" + bno + "]");
+	            oldCookie.setPath("/");
+	            oldCookie.setMaxAge(60 * 60 * 24);
+	            response.addCookie(oldCookie);
+	        }
+	    } else {
+	    	//쿠키가 존재하지 않을 경우
+	    	//조회수 증가
+    		boardMapper.bhit(bno);
+	        Cookie newCookie = new Cookie("readView", "[" + bno + "]");
+	        newCookie.setPath("/");
+	        newCookie.setMaxAge(60 * 60 * 24);
+	        response.addCookie(newCookie);
+	        System.out.println(newCookie);
+	    }
+		
+		
 		// 하단댓글 모두 가져오기
 		List<BCommentDto> bCommentlist = boardMapper.bCommentSelectAll(bno);
 		

@@ -13,6 +13,8 @@ import com.java.www.dto.MemberDto2;
 import com.java.www.service.EmailService;
 import com.java.www.service.MService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -27,6 +29,31 @@ public class MController {
 	public String id() {
 		return "member/id";
 	}
+	
+	@PostMapping("idsave") //cookie저장
+	@ResponseBody
+	public String idsave(String id,HttpServletResponse response) {
+		System.out.println("MController idsave id : "+id);
+		//cookie 저장
+		Cookie cookie=null;
+		if(id!=null) {
+			cookie = new Cookie("id", id);
+			cookie.setMaxAge(24 * 30 * 60 * 60 * 1000); //30일간 저장
+			response.addCookie(cookie);
+			System.out.println("cookie 저장");
+		}else {
+			cookie = new Cookie("id", "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+			System.out.println("cookie 삭제");
+		}
+		
+		String result = "success";
+		return result;
+	}
+	
+	
+	
 	@GetMapping("idsearch") //idsearch페이지 열기
 	public String idsearch() {
 		return "member/idsearch";

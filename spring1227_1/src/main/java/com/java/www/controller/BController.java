@@ -17,6 +17,8 @@ import com.java.www.dto.BCommentDto;
 import com.java.www.dto.BoardDto;
 import com.java.www.service.BService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -37,10 +39,11 @@ public class BController {
 	}
 	
 	@GetMapping("notice_view") //1개 게시글 가져오기
-	public String notice_view(@RequestParam(defaultValue = "1") int bno,Model model) {
+	public String notice_view(@RequestParam(defaultValue = "1") int bno,Model model,
+			HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("bcontroller notice_view bno : "+bno);
 		//service연결
-		Map<String, Object> map = bService.selectOne(bno);
+		Map<String, Object> map = bService.selectOne(bno,request,response);
 		//model전송
 		model.addAttribute("map",map);
 		return "customer/notice_view";

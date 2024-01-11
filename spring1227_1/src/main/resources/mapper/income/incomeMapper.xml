@@ -8,6 +8,11 @@
       select * from income where cyear=#{cyear} order by cmonth
    </select>
    
+   <insert id="insertGallery">
+     insert into galleryList values (#{galContentId},#{galContentTypeId},#{galTitle}
+     ,#{galWebImageUrl},#{galCreatedtime},#{galModifiedtime}
+     ,#{galPhotographyMonth},#{galPhotographyLocation},#{galPhotographer},#{galSearchKeyword})
+   </insert>
    
   
    

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.java.www.dto.GalleryListDto;
 import com.java.www.dto.IncomeDto;
 import com.java.www.mapper.IncomeMapper;
 
@@ -18,6 +19,12 @@ public class FServiceImpl implements FService {
 		//db연결
 		List<IncomeDto> list = incomeMapper.incomeSelect(cyear);
 		return list;
+	}
+
+	@Override //갤러리 1개 데이터 저장
+	public void insertGallery(GalleryListDto galleryListDto) {
+		incomeMapper.insertGallery(galleryListDto);
+		
 	}
 
 }

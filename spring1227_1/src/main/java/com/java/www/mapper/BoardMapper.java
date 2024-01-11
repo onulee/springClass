@@ -31,5 +31,8 @@ public interface BoardMapper {
 	//댓글 수정저장
 	void BCommentUpdate(BCommentDto cdto);
 
+	//조회수 1증가
+	void bhit(int bno);
+
 
 }

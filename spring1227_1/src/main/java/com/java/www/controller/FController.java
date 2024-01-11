@@ -8,12 +8,18 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java.www.dto.GalleryListDto;
 import com.java.www.dto.IncomeDto;
 import com.java.www.service.FService;
 
@@ -182,10 +188,14 @@ public class FController {
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());
+        
+        
+        
 		return sb.toString();
 	}//gallerySearchList
 	
 	//사진목록 메소드
+	@Transactional
 	public String galleryList(String page,String serviceKey) throws Exception  {
 		StringBuilder urlBuilder = new StringBuilder("https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "="+serviceKey); /*Service Key*/
@@ -214,7 +224,39 @@ public class FController {
         }
         rd.close();
         conn.disconnect();
+        
+        
+        System.out.println("----------------");
         System.out.println(sb.toString());
+        System.out.println("[ json파싱 ]");
+        JSONParser jsonParser = new JSONParser(); 
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(sb.toString()); 
+        System.out.println("jsonObject : "+jsonObject);
+        //json데이터에서 특정값 찾기
+        JSONObject jsonObject2 = (JSONObject) jsonObject.get("response"); 
+        JSONObject jsonObject3 = (JSONObject) jsonObject2.get("body"); 
+        JSONObject jsonObject4 = (JSONObject) jsonObject3.get("items"); 
+        JSONArray docuArray = (JSONArray) jsonObject4.get("item");
+        System.out.println("docuArray 개수 : "+docuArray.size());
+        for(int i=0;i<10;i++ ) {
+        	JSONObject jObject = (JSONObject) docuArray.get(i);
+        	System.out.println("jObject galTitle : "+jObject.get("galTitle"));
+        	
+        	//json데이터를 java오브젝트로 변환 : ObjectMapper
+    	    ObjectMapper objectMapper = new ObjectMapper();
+    	    GalleryListDto galleryListDto = null;
+    		
+    		//json데이터를 java오브젝트로 변경
+    		try {
+    			galleryListDto = objectMapper.readValue(jObject.toString(), GalleryListDto.class);
+    		} catch (Exception e) { e.printStackTrace(); }
+        	
+    		//갤러리 1개 데이터 저장
+    		fService.insertGallery(galleryListDto);
+        	System.out.println("데이터 저장되었습니다.");
+        }
+        
+        //---------------------------------------
 		
 		return sb.toString();
 	}//galleryList

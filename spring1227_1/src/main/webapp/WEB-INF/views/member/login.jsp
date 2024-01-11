@@ -67,24 +67,62 @@
 								error:function(){
 									alert("실패");
 								}
-							});
+							});//ajax
 							
 							//jsp형태
 							//loginFrm.submit();
 							
-						 }); 
-					  });
+						 }); //click
+						 
+						 $("#idsave").click(()=>{
+							//alert("체크확인");
+							let id = "";
+							if($("#idsave").is(":checked") == true){
+								alert("체크되었습니다.");
+								id = $("#id").val();
+							}else{
+								alert("체크해제 되었습니다.");
+							}
+							
+							$.ajax({
+								url:"/member/idsave",
+								type:"post",
+								data:{"id":id},
+								dataType:"text",
+								success:function(data){
+									alert("성공");
+									console.log(data);
+								},
+								error:function(){
+									alert("실패");
+								}
+							}); 
+							
+							
+							
+						 });
+						 
+					  });//jquery
 					</script>
 					<form action="login" method="post" name="loginFrm" id="loginFrm">
 						<div class="informbox">
 							<div class="inform">
 								<ul>
-									<li><input type="text" name="id" id="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+									<script>
+									   $(function(){
+										   if(${empty cookie.id.value}){
+											   $("#id").addClass("loginType loginType2");
+										   }else{
+											   $("#id").addClass("loginType");
+										   }
+									   });
+									</script>
+									<li><input type="text" name="id" id="id" value="${cookie.id.value}" onfocus="this.className='mfocus'"     /></li>
 									<li><input type="password" name="pw" id="pw" class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 								</ul>
 	
 								<div class="btn"><a class="sbtn" style="cursor: pointer;">로그인</a></div>
-								<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
+								<div class="chk"><input type="checkbox" id="idsave" ${ empty cookie.id.value?"":"checked" }/><label for="idsave">아이디 저장</label></div>							
 	
 								<div class="point">
 									<p>아이디와 비밀번호를 잊으셨나요?</p>
