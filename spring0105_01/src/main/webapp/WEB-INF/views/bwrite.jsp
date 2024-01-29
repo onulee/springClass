@@ -61,7 +61,7 @@
     //ajax으로 파일을 서버에 전송하는 부분
     function uploadImage(file,this_location){ //매개변수 - file:이미지파일,현재위치값
     	var fdata = new FormData(); //ajax에서 전송할때 form형태로 전송
-    	fdata.append("file",file); //file이미지를 첨부
+    	fdata.append("afile",file); //file이미지를 첨부
     	$.ajax({
     		url:"/uploadImage",
     		type:"post",
@@ -154,7 +154,7 @@
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="file" id="file">
+            <input type="file" name="afile" id="file">
           </td>
         </tr>
       </table>

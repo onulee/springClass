@@ -98,16 +98,16 @@ public class FController {
 	
 	@PostMapping("uploadImage") //summernote에서 ajax이미지 전송
 	@ResponseBody
-	public String uploadImage(@RequestPart MultipartFile file) throws Exception {
+	public String uploadImage(@RequestPart MultipartFile afile) throws Exception {
 		String urlName = "";
 		//파일 서버로 전송하는 부분
-		if(!file.isEmpty()) {
-			String oriFileName = file.getOriginalFilename();
+		if(!afile.isEmpty()) {
+			String oriFileName = afile.getOriginalFilename();
 			long time = System.currentTimeMillis();
 			String uploadFileName = time+"_"+oriFileName; //파일이름변경
 			String uploadUrl = "c:/upload/";
 			File f = new File(uploadUrl+uploadFileName); //파일등록
-			file.transferTo(f); //파일서버로 전송
+			afile.transferTo(f); //파일서버로 전송
 			urlName = "/upload/"+uploadFileName;
 			System.out.println("controller ajax전송 링크주소 : "+urlName);
 		}
@@ -117,16 +117,16 @@ public class FController {
 	
 	
 	@PostMapping("bwrite") //글쓰기 저장
-	public String bwrite(BoardDto bdto,@RequestPart MultipartFile file,Model model) throws Exception {
+	public String bwrite(BoardDto bdto,@RequestPart MultipartFile afile,Model model) throws Exception {
 		System.out.println("controller bwrite btitle : "+bdto.getBtitle());
 		//파일 서버로 전송하는 부분
-		if(!file.isEmpty()) {
-			String oriFileName = file.getOriginalFilename();
+		if(!afile.isEmpty()) {
+			String oriFileName = afile.getOriginalFilename();
 			long time = System.currentTimeMillis();
 			String uploadFileName = time+"_"+oriFileName; //파일이름변경
 			String uploadUrl = "c:/upload/";
 			File f = new File(uploadUrl+uploadFileName); //파일등록
-			file.transferTo(f); //파일서버로 전송
+			afile.transferTo(f); //파일서버로 전송
 			bdto.setBfile(uploadFileName); //dto bfile 이름저장
 		}else {
 			bdto.setBfile(""); //dto bfile 이름저장
