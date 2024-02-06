@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- BoardMapper.java 연결 -->
+<mapper namespace="com.java.mapper.BoardMapper">
+  <select id="selectAll" resultType="com.java.dto.BoardDto">
+    select * from 
+	( select ROW_NUMBER() OVER ( ORDER BY bgroup desc,bstep asc) rnum, a.* from board a )
+	where rnum between 1 and 10
+  </select>
+  <select id="selectOne" resultType="com.java.dto.BoardDto">
+    select * from board where bno=#{bno}
+  </select>
+  <select id="preSelectOne" resultType="com.java.dto.BoardDto">
+    select * from board where bno = 
+	( select pre_bno from
+	( select bno,lead(bno,1,-1) over(order by bgroup desc,bstep asc) as pre_bno from board ) b
+	where bno=#{bno} )
+  </select>
+  <select id="nextSelectOne" resultType="com.java.dto.BoardDto">
+    select * from board where bno = 
+	( select pre_bno from
+	( select bno,lag(bno,1,-1) over(order by bgroup desc,bstep asc) as pre_bno from board ) b
+	where bno=#{bno} )
+  </select>
+  
+  <!-- 글쓰기 저장 -->
+   <insert id="insert">
+     insert into board values (board_seq.nextval,#{btitle},#{bcontent},
+     sysdate,#{id},board_seq.currval,0,0,1,#{bfile})
+   </insert>
+  
+   
+   
+   
+</mapper>
