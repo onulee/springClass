@@ -9,6 +9,18 @@
 	( select ROW_NUMBER() OVER ( ORDER BY bgroup desc,bstep asc) rnum, a.* from board a )
 	where rnum between 1 and 10
   </select>
+  
+  
+  <!-- 배열로 값이 넘어올때 사용 -->
+  <select id="selectAll2" resultType="com.java.dto.BoardDto">
+    select * from board where 
+    <foreach collection ="array" index='index' item='locals' open="(" close=")" separator="or">
+	bcontent like '%'||#{locals}||'%'
+	</foreach>
+  </select>
+  
+  
+  
   <select id="selectOne" resultType="com.java.dto.BoardDto">
     select * from board where bno=#{bno}
   </select>

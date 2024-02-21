@@ -8,7 +8,7 @@ import com.java.dto.BoardDto;
 public interface BoardService {
 
 	//게시글 전체가져오기
-	ArrayList<BoardDto> selectAll();
+	ArrayList<BoardDto> selectAll2(String[] locals);
 
 	//게시글 1개 가져오기
 	Map<String, Object> selectOne(int bno);

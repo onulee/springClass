@@ -16,8 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired BoardMapper boardMapper;
 	
 	@Override //게시글 전체가져오기
-	public ArrayList<BoardDto> selectAll() {
-		ArrayList<BoardDto> list = boardMapper.selectAll();
+	public ArrayList<BoardDto> selectAll2(String[] locals) {
+		
+		ArrayList<BoardDto> list = boardMapper.selectAll2(locals);
 		return list;
 	}
 

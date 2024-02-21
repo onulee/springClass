@@ -10,7 +10,7 @@ import com.java.dto.BoardDto;
 public interface BoardMapper {
 
 	//게시글 전체가져오기
-	public ArrayList<BoardDto> selectAll();
+	public ArrayList<BoardDto> selectAll2(String[] locals);
 
 	//게시글 1개 가져오기
 	public BoardDto selectOne(int bno);

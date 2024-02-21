@@ -27,7 +27,9 @@ public class BoardController {
 	
 	@GetMapping("notice") //게시글 전체가져오기
 	public String notice(Model model) {
-		ArrayList<BoardDto> list = boardService.selectAll();
+		//임의 배열1개 생성
+		String[] locals = {"사진","연예"};
+		ArrayList<BoardDto> list = boardService.selectAll2(locals);
 		model.addAttribute("list",list);
 		return "customer/notice";
 	}

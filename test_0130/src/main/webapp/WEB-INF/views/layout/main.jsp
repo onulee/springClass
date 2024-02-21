@@ -170,9 +170,9 @@ $(document).ready(function() {
 			<div id="snb">
 				<ul>
 					<li><a href="#">LOGIN</a></li>
-					<li><a href="#">JOIN</a></li>
+					<li><a href="/member/step03">JOIN</a></li>
 					<li><a href="#">MY PAGE</a></li>
-					<li><a href="#">CART</a></li>
+					<li><a href="/member/checkbox">CART</a></li>
 				</ul>
 
 				<div id="search">
