@@ -171,7 +171,7 @@ $(document).ready(function() {
 				<ul>
 					<li><a href="#">LOGIN</a></li>
 					<li><a href="/member/step03">JOIN</a></li>
-					<li><a href="#">MY PAGE</a></li>
+					<li><a href="/mypage/my_list">MY PAGE</a></li>
 					<li><a href="/member/checkbox">CART</a></li>
 				</ul>
 

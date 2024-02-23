@@ -18,6 +18,13 @@ public class FController {
 	public String step03() {
 		return "member/step03";
 	}
+	
+	@GetMapping("/mypage/my_list")
+	public String my_list() {
+		return "/mypage/my_list";
+	}
+	
+	//체크박스 데이터 넘기기
 	@GetMapping("member/checkbox")
 	public String checkbox() {
 		return "member/checkbox";
